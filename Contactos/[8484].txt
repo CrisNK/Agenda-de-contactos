@@ -1,0 +1,3 @@
+Nombre: cris
+Telefono: 9 5342 4234
+Categoria: Personal

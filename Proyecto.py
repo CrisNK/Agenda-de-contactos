@@ -47,7 +47,9 @@ def create_directory():
         os.makedirs(FOLDER)
 # CRUD
 def create_contact():
-    print('*--------* Crear contacto *--------*')
+    print('*--------------------------------------*') 
+    print('|            Crear contacto            |') 
+    print('*--------------------------------------*') 
     while True:
         contact_id = random.randint(1000, 9999)
         files = os.listdir(FOLDER) # Función para obtener un diccionario de los archivos contenidos en 'FOLDER'
@@ -66,11 +68,33 @@ def create_contact():
         file.write('Categoria: ' + contact.category + '\n')
     os.system('cls')
     print('¡Contacto creado exitosamente!')
-    
 def read_contact():
-    print('Read contact')
+    print('*--------------------------------------*') 
+    print('|           Mostrar contacto           |') 
+    print('*--------------------------------------*') 
+    contact_name = input('Nombre del contacto a buscar: ').lower()
+    files = os.listdir(FOLDER)
+    nameFounded = False
+    os.system('cls')
+    print(f'Listado con la/s persona/s con el nombre: {contact_name}')
+    # Acceder a cada archivo de la list creada
+    for i, directory in enumerate(files):
+        file = open(FOLDER + directory, 'r')
+        contact_name_in_file = file.readline().lower().split(' ')[1].strip()
+        # Verificar que el nombre ingresado sea igual al del archivo
+        if contact_name == contact_name_in_file:
+            nameFounded = True
+            file.seek(0)
+            print(file.read())
+        file.close()
+    if nameFounded:
+        os.system('pause')
+        os.system('cls')
+    else:
+        os.system('cls')
+        print('Sin resultados')
 def update_contact():
-    print('Update contact')
+    print('*--* Actualizar contacto *--*')
 def delete_contact():
     print('Delete contact')
 def search_contact():
