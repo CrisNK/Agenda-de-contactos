@@ -5,7 +5,8 @@ FOLDER = 'Contactos/'
 EXTENSION = '.txt'
 
 class Contact:
-    def __init__(self, name, cellphone, category):
+    def __init__(self, id, name, cellphone, category):
+        self.id = id
         self.name = name
         self.cellphone = cellphone
         self.category = category   
@@ -63,14 +64,25 @@ def create_contact():
     contact = Contact(contact_name, cellphone_number, contact_category)
 
     with open(FOLDER + '[' + str(contact_id)+ ']' + EXTENSION, 'w') as file:
+        file.write('ID: ' + contact.id + '\n')
         file.write('Nombre: ' + contact.name + '\n')
         file.write('Telefono: ' + contact.cellphone + '\n')
         file.write('Categoria: ' + contact.category + '\n')
     os.system('cls')
     print('¡Contacto creado exitosamente!')
 def read_contact():
+    print('*---------------------------------------*')
+    print('|           Mostrar contactos           |')
+    print('*---------------------------------------*')
+
+    
+def update_contact():
+    print('*--* Actualizar contacto *--*')
+def delete_contact():
+    print('Delete contact')
+def search_contact():
     print('*--------------------------------------*') 
-    print('|           Mostrar contacto           |') 
+    print('|           Buscar contacto            |') 
     print('*--------------------------------------*') 
     contact_name = input('Nombre del contacto a buscar: ').lower()
     files = os.listdir(FOLDER)
@@ -80,6 +92,7 @@ def read_contact():
     # Acceder a cada archivo de la list creada
     for i, directory in enumerate(files):
         file = open(FOLDER + directory, 'r')
+        file.readline() # Utilizado para omitir la lectura del ID, y vaya directo al nombre
         contact_name_in_file = file.readline().lower().split(' ')[1].strip()
         # Verificar que el nombre ingresado sea igual al del archivo
         if contact_name == contact_name_in_file:
@@ -93,11 +106,5 @@ def read_contact():
     else:
         os.system('cls')
         print('Sin resultados')
-def update_contact():
-    print('*--* Actualizar contacto *--*')
-def delete_contact():
-    print('Delete contact')
-def search_contact():
-    print('Search contact')
 
 main()
