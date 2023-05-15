@@ -1,7 +1,14 @@
 import os
 import random
 
-CARPETA = 'Proyecto/Contactos/'
+FOLDER = 'Contactos/'
+EXTENSION = '.txt'
+
+class Contact:
+    def __init__(self, name, cellphone, category):
+        self.name = name
+        self.cellphone = cellphone
+        self.category = category   
 
 def main():
     create_directory()
@@ -24,7 +31,6 @@ def main():
             os.system('cls')
             print("Error: La opción ingresada no es válida")
 
-# Funciones principales
 def display_menu():
     print('*----------------------------*')
     print('|        Menu principal      |')
@@ -37,14 +43,29 @@ def display_menu():
     print('| 6) Finalizar programa      |')
     print('*----------------------------*')
 def create_directory():
-    if not os.path.exists(CARPETA):
-        os.makedirs(CARPETA)
-# Funciones secundarias
+    if not os.path.exists(FOLDER):
+        os.makedirs(FOLDER)
+# CRUD
 def create_contact():
     print('*--------* Crear contacto *--------*')
-    contact_id = random.randint(1000, 9999)
-    print(contact_id)
-    name = input('Ingrese el nombre del contacto: ')
+    while True:
+        contact_id = random.randint(1000, 9999)
+        files = os.listdir(FOLDER) # Función para obtener un diccionario de los archivos contenidos en 'FOLDER'
+        if not str(contact_id) + EXTENSION in files:
+            break
+
+    contact_name = input('Nombre: ')
+    cellphone_number = input('Telefono: ')
+    contact_category = input('Categoria: ')
+
+    contact = Contact(contact_name, cellphone_number, contact_category)
+
+    with open(FOLDER + '[' + str(contact_id)+ ']' + EXTENSION, 'w') as file:
+        file.write('Nombre: ' + contact.name + '\n')
+        file.write('Telefono: ' + contact.cellphone + '\n')
+        file.write('Categoria: ' + contact.category + '\n')
+    os.system('cls')
+    print('¡Contacto creado exitosamente!')
     
 def read_contact():
     print('Read contact')
