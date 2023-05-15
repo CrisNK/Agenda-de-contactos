@@ -1,9 +1,10 @@
 Crear contacto:
-    - Al crear el contacto pueden haber múltiples personas con el mismo nombre, ya que cada uno
-      tiene un ID único
+    - Al crear un nuevo contacto, es posible que haya múltiples personas con el mismo nombre, ya que cada una de ellas tiene un ID único asociado. Esto permite distinguir a cada contacto de manera precisa dentro del programa.
 Mostrar contacto:
-    - Muestra todos los contactos guardados.
+    - Esta funcionalidad permite mostrar todos los contactos guardados en el programa. Al utilizarla, se obtendrá una lista completa de todos los contactos registrados hasta el momento.
 Actualizar contacto:
-    - 
+    - Al seleccionar esta opción, se le solicita al usuario proporcionar el ID del contacto que se desea actualizar. Una vez ingresado el ID, el programa procede a requerir la información completa del nuevo contacto, excluyendo el propio ID, el cual se mantiene sin cambios.
+Eliminar contacto:
+    - Se solicita al usuario ingresar el ID del contacto que desea eliminar del programa. Una vez proporcionado, el programa elimina de manera definitiva la información correspondiente a dicho contacto.
 Buscar contacto:
-    - Se mostrán las múltiples personas que existan con el nombre ingresado
+    - Se permite buscar personas dentro de los contactos almacenados en base a un nombre específico. Si existen múltiples contactos con el nombre ingresado, el programa mostrará una lista completa de dichos contactos.
