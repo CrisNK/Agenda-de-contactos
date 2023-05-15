@@ -34,7 +34,7 @@ def main():
 
 def display_menu():
     print('*----------------------------*')
-    print('|        Menu principal      |')
+    print('|       Menu principal       |')
     print('*----------------------------*')
     print('| 1) Crear contacto          |')
     print('| 2) Mostrar contacto        |')
@@ -61,10 +61,10 @@ def create_contact():
     cellphone_number = input('Telefono: ')
     contact_category = input('Categoria: ')
 
-    contact = Contact(contact_name, cellphone_number, contact_category)
+    contact = Contact(contact_id, contact_name, cellphone_number, contact_category)
 
     with open(FOLDER + '[' + str(contact_id)+ ']' + EXTENSION, 'w') as file:
-        file.write('ID: ' + contact.id + '\n')
+        file.write('ID: ' + str(contact.id) + '\n')
         file.write('Nombre: ' + contact.name + '\n')
         file.write('Telefono: ' + contact.cellphone + '\n')
         file.write('Categoria: ' + contact.category + '\n')
@@ -74,10 +74,39 @@ def read_contact():
     print('*---------------------------------------*')
     print('|           Mostrar contactos           |')
     print('*---------------------------------------*')
+    files = os.listdir(FOLDER)
 
-    
+    for i, directory in enumerate(files):
+        file = open(FOLDER + directory, 'r')
+        print(file.read())
+        file.close()
+    print('*-------------- FIN LISTA -------------*')
+    os.system('pause')
 def update_contact():
-    print('*--* Actualizar contacto *--*')
+    read_contact()
+    files = os.listdir(FOLDER)
+    contact_id = input('ID del contacto a actualizar: ')
+    id_exists = os.path.isfile(FOLDER + '[' + contact_id + ']' + EXTENSION)
+    if not id_exists:
+        os.system('cls')
+        print('Sin resultados.')
+    else:
+        file = open(FOLDER + '[' + contact_id + ']' + EXTENSION, 'w')
+        os.system('cls')
+        print('Ingreso de nuevos datos a modificar:')
+        contact_name = input('Nombre: ')
+        cellphone_number = input('Telefono: ')
+        contact_category = input('Categoria: ')
+
+        # Instanciar
+        contact = Contact(contact_id, contact_name, cellphone_number, contact_category)
+
+        file.write('ID: ' + contact_id + '\n')
+        file.write('Nombre: ' + contact.name + '\n')
+        file.write('Telefono: ' + contact.cellphone + '\n')
+        file.write('Categoria: ' + contact.category + '\n')
+        file.close()
+        print('¡Contacto actualizado exitosamente!')
 def delete_contact():
     print('Delete contact')
 def search_contact():
@@ -107,4 +136,6 @@ def search_contact():
         os.system('cls')
         print('Sin resultados')
 
+os.system('cls')
+print('         ¡Bienvenido!')
 main()

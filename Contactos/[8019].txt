@@ -1,4 +1,0 @@
-ID: 8019
-Nombre: Gabriela
-Telefono: 9 6456 6513
-Categoria: Otros

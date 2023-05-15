@@ -2,5 +2,8 @@ Crear contacto:
     - Al crear el contacto pueden haber múltiples personas con el mismo nombre, ya que cada uno
       tiene un ID único
 Mostrar contacto:
+    - Muestra todos los contactos guardados.
+Actualizar contacto:
+    - 
+Buscar contacto:
     - Se mostrán las múltiples personas que existan con el nombre ingresado
-    
