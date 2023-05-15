@@ -85,7 +85,10 @@ def read_contact():
 def update_contact():
     read_contact()
     files = os.listdir(FOLDER)
-    contact_id = input('ID del contacto a actualizar: ')
+    print('*--------------------------------------*') 
+    print('|         Actualizar contacto          |') 
+    print('*--------------------------------------*') 
+    contact_id = input('Ingrese el ID del contacto: ')
     id_exists = os.path.isfile(FOLDER + '[' + contact_id + ']' + EXTENSION)
     if not id_exists:
         os.system('cls')
@@ -108,7 +111,18 @@ def update_contact():
         file.close()
         print('¡Contacto actualizado exitosamente!')
 def delete_contact():
-    print('Delete contact')
+    read_contact()
+    print('*--------------------------------------*') 
+    print('|          Eliminar contacto           |') 
+    print('*--------------------------------------*') 
+    contact_id = input('Ingrese el ID del contacto: ')
+    id_exists = os.path.isfile(FOLDER + '[' + contact_id + ']' + EXTENSION)
+    if id_exists:
+        os.remove(FOLDER + '[' + contact_id + ']' + EXTENSION)
+        print('¡Contacto eliminado exitosamente!')
+    else:
+        os.system('cls')
+        print('Sin resultados.')
 def search_contact():
     print('*--------------------------------------*') 
     print('|           Buscar contacto            |') 
@@ -135,7 +149,6 @@ def search_contact():
     else:
         os.system('cls')
         print('Sin resultados')
-
 os.system('cls')
 print('         ¡Bienvenido!')
 main()
